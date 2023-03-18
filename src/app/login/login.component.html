@@ -1,0 +1,77 @@
+<div class="w3l_banner_nav_right">
+  <!-- login -->
+  <div class="w3_login">
+    <h3>Sign In & Sign Up</h3>
+    <div class="w3_login_module">
+      <div class="module form-module">
+        <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+          <div class="tooltip">Click Me</div>
+        </div>
+        <div class="form">
+          <h2>Login to your account</h2>
+          <form action="#" method="post" [formGroup]="signUpForm" (submit)="doSignUp()">
+            <p class="alert alert-danger" *ngIf="msg">{{msg}}</p>
+            <div>
+              <input type="text" name="Username" placeholder="Username" formControlName="Username">
+              <p class="alert alert-danger" *ngIf="unameCopy.touched && unameCopy.errors?.['required']">Please Enter
+                Your Name</p>
+            </div>
+            <div>
+              <input type="password" name="Password" placeholder="Password" formControlName="Password">
+              <p class="alert alert-danger" *ngIf="unamePass.touched && unamePass.errors?.['required']">Please Enter
+                Your Password</p>
+              <p class="alert alert-danger" *ngIf="unamePass.errors&& unamePass.touched">Your Password
+                Must Have 8 charecters</p>
+            </div>
+            <input type="submit" value="Login" [disabled]="signUpForm.invalid">
+          </form>
+        </div>
+        <div class="form">
+          <h2>Create an account</h2>
+          <p class="alert alert-success" *ngIf="msg">{{msg}}</p>
+
+          <form action="#" method="post" (submit)="doReg(f)" #f="ngForm"> 
+            <div class="form-group">
+              <input type="text" name="Username" placeholder="Username" class="form-control" id="inputName" ngModel
+                required minlength="4" #userName="ngModel">
+              <p class="alert alert-danger"
+                *ngIf="(userName.touched || userName.dirty) && userName.errors?.['required']">Please Enter Your Username
+              </p>
+              <p class="alert alert-danger" *ngIf="userName.errors?.['minlength'] && userName.touched">Please Enter
+                Minimum 4 Charecters</p>
+            </div>
+            <div class="form-group">
+              <input type="password" name="Password" placeholder="Password" class="form-control" id="inputPassword"
+                aria-describedby="passHelp" ngModel required
+                pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$" #userpassword="ngModel">
+              <p class="alert alert-danger" *ngIf="userpassword.errors?.['pattern']">
+                Password should be at least 8 characters
+                long and should contain one number,one character and one special
+                character.
+              </p>
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" name="Email"
+                placeholder="Email Address" ngModel required email #useremail="ngModel">
+              <p class="alert alert-danger" *ngIf="useremail.touched && useremail.errors?.['email']">
+                Please Enter valid Email id
+              </p>
+            </div>
+            <div>
+              <input type="text" class="form-control" id="phoneInfo" name="Phone" placeholder="Phone Number" ngModel
+                required pattern=" [- +()0-9]{10,12}" maxlength="10" #userphone="ngModel">
+              <p class="alert alert-danger" *ngIf="userphone.touched && userphone.errors?.['required']">
+                Please Enter valid Phone number
+
+              </p>
+            </div>
+            <input type="submit" value="Register" [disabled]="f.valid">
+          </form>
+        </div>
+        <div class="cta"><a href="#">Forgot your password?</a></div>
+      </div>
+    </div>
+
+  </div>
+  <!-- //login -->
+</div>
